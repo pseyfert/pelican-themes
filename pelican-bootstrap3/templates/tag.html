@@ -4,6 +4,13 @@
     <meta name="author" content="{{ AUTHOR }}" />
     <meta name="keywords" content="{{ tag }}" />
 {% endblock %}
+{% block content_title %}
+{% if tag.description %}
+<h1>{{ tag }}</h1>
+{{ tag.description }}
+{% endif %}
+<h2>Articles tagged as: {{ tag }}</h2>
+{% endblock %}
 {% block breadcrumbs %}
     {% if DISPLAY_BREADCRUMBS %}
     <ol class="breadcrumb">

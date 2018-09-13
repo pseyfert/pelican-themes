@@ -4,6 +4,10 @@
     <meta name="author" content="{{ AUTHOR }}" />
     <meta name="keywords" content="{{ category }}" />
 {% endblock %}
+{% if category.description %}
+<h1>{{ category }}</h1>
+{{ category.description }}
+{% endif %}
 {% block breadcrumbs %}
     {% if DISPLAY_BREADCRUMBS %}
     <ol class="breadcrumb">

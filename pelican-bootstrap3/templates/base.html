@@ -4,6 +4,7 @@
 {% endif %}
 <html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock %}"{% if USE_OPEN_GRAPH %} prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml"{% endif %}>
 <head>
+  <p></p>
     <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,11 +16,9 @@
     {% endif %}
 
     {# Favicons are a touchy subject. For reasoning for the following code, see: http://stackoverflow.com/a/23851464/872397 #}
-    {% if FAVICON %}
-    <link href="{{ SITEURL }}/{{ FAVICON }}" rel="icon">
-    {% endif %}
-    {% if FAVICON_IE %}
-    <!--[if IE]><link rel="shortcut icon" href="{{ SITEURL }}/{{ FAVICON_IE }}"><![endif]-->
+    {% if LOGO %}
+    <link rel="shortcut icon" href="{{ SITEURL }}/{{ LOGO }}" />
+    <link href="{{ SITEURL }}/{{ LOGO }}" rel="icon">
     {% endif %}
     {% if TOUCHICON %}
     <link rel="apple-touch-icon" href="{{ SITEURL }}/{{ TOUCHICON }}">
@@ -132,15 +131,18 @@
                     {% set PAGES_SORT_ATTRIBUTE = 'title' %}
                 {%- endif %}
                 {% if DISPLAY_PAGES_ON_MENU %}
-                    {% for p in pages | sort(attribute=PAGES_SORT_ATTRIBUTE) %}
+                    {% for p in pages %}
                         {% if p.url %}
                          <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">
                              {{ p.menulabel|default(p.title) }}
                           </a></li>
                         {% endif %}
-                      {% endfor %}
+                    {% endfor %}
                 {% endif %}
-                {% if DISPLAY_CATEGORIES_ON_MENU %}
+                <li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/blog/blog_index.html">
+                    Blog
+                  </a></li>
+                {% if DISPLAY_CATEGORIES_ON_MENU and p == page %}
                     {% for cat, null in categories %}
                         <li {% if cat == category %}class="active"{% endif %}>
                             <a href="{{ SITEURL }}/{{ cat.url }}">{{ cat | capitalize }}</a>
