@@ -9,7 +9,7 @@
 {#                                                                          #}
 {# If full attribution markup is desired in a Pelican template, the         #}
 {# attr_props dict can be defaulted to the following when calling the macro:#}
-{# attr_props={'title':SITENAME,'name':AUTHOR,'url':SITEURL}
+{# attr_props={'title':SITENAME,'name':AUTHOR,'url':SITEURL,'static_dir':THEME_STATIC_DIR}
 {# ------------------------------------------------------------------------ #}
 {# Generate a license mark for Creative Commons licensed content.           #}
 {# Choose the license either by name (CC-BY, CC-BY-SA, CC-BY-NC-SA, or      #}
@@ -53,8 +53,8 @@
       {% set cc_title_suffix = cc_title_suffix ~ "-ShareAlike" %}
     {% endif %}
   {% endif %}
-  {% set cc_title, cc_uri, cc_icon = ("Creative Commons AttributionCCSUFFIX 4.0 International License","https://creativecommons.org/licenses/CCNAME/4.0/","//i.creativecommons.org/l/CCNAME/4.0/80x15.png") %}
-  <a rel="license" href="{{ cc_uri|replace('CCNAME',cc_name) }}deed.{{ attr_props['lang'] }}"><img alt="Creative Commons License" style="border-width:0" src="{{ cc_icon|replace('CCNAME',cc_name) }}" /></a>
+  {% set cc_title, cc_uri, cc_icon = ("Creative Commons AttributionCCSUFFIX 4.0 International License","https://creativecommons.org/licenses/CCNAME/4.0/","CCNAME.png") %}
+  <a rel="license" href="{{ cc_uri|replace('CCNAME',cc_name) }}deed.{{ attr_props['lang'] }}"><img alt="Creative Commons License" style="border-width:0" src="{{ attr_props['url'] }}/{{ attr_props['static_dir'] }}/license-buttons/{{ cc_icon|replace('CCNAME',cc_name) }}" /></a>
   {% if br_after_img %}<br/>{% endif %}
   {% if attr_markup %}
     &quot;<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">{{ attr_props['title'] }}</span>&quot; by <a xmlns:cc="http://creativecommons.org/ns#" href="{{ attr_props['url'] }}" property="cc:attributionName" rel="cc:attributionURL">{{ attr_props['name'] }}</a> is
