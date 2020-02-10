@@ -57,6 +57,8 @@
         <meta name="flattr:id" content="{{ FLATTR_ID }}">
     {% endif %}
 
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/asciinema-player.css" />
+
     <!-- Bootstrap -->
     {% if BOOTSTRAP_THEME %}
         <link rel="stylesheet" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/bootstrap.{{ BOOTSTRAP_THEME }}.min.css" type="text/css"/>
@@ -207,6 +209,8 @@
 <!-- End Content Container -->
 
 {% include 'includes/footer.html' %}
+
+<script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/asciinema-player.js"></script>
 
 <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/jquery.min.js"></script>
 
